@@ -28,6 +28,13 @@ public class Circle extends Shape2D {
     }
 
     /**
+     * setter for radius
+     */
+    private void setRadius(double value) {
+        this.radius = value;
+    }
+
+    /**
      * Method to calculate the Area of a circle
      * @return Returns the area of the circle object
      */

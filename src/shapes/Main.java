@@ -65,7 +65,6 @@ public class Main {
         for (Shape2D shape : shapes) {
             shape.translate(translate.getXCord(), translate.getYCord());
         }
-        printShapesDetails(shapes, points);
     }
 
 
@@ -128,7 +127,11 @@ public class Main {
             try {
                 num = userInput.nextDouble();
                 userInput.nextLine();
+                if (!validateDoubleRange(lowerLimit, upperLimit, num)) {
+                    System.out.printf("Invalid input - enter a number greater than %d and less than %d\n", lowerLimit, upperLimit);
+                } else {
                 valid = true;
+                }
             } catch (NumberFormatException ex) {
                 System.out.println("Invalid input - please enter an integer\n");
             }
@@ -151,7 +154,7 @@ public class Main {
             try {
                 num = userInput.nextInt();
                 userInput.nextLine();
-                if ((num<=lowerLimit) || (num>=upperLimit)) {
+                if (!validateIntRange(lowerLimit, upperLimit, num)) {
                     System.out.printf("Invalid input - enter a number greater than %d and less than %d\n", lowerLimit, upperLimit);
                 } else {
                     valid = true;
@@ -161,6 +164,28 @@ public class Main {
             }
         }
         return num;
+    }
+
+    /**
+     * Method to check integer within range
+     * @param lower lower end of acceptable value
+     * @param upper upper end of acceptable value
+     * @param value value to check
+     * @return true if within range else false
+     */
+    public boolean validateIntRange(int lower, int upper, int value) {
+        return ((value>=lower) && (value<=upper));
+    }
+
+    /**
+     * Method to check double within range
+     * @param lower lower end of acceptable value
+     * @param upper upper end of acceptable value
+     * @param value value to check
+     * @return true if within range else false
+     */
+    public boolean validateDoubleRange(double lower, double upper, double value) {
+        return ((value>=lower) && (value<=upper));
     }
 
      /**
